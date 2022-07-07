@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Modifiers</h1>
+    </header>
+    <section id="events">
+      <P>Mouse Event (click)</P>
+      <form class="form" action="" v-on:submit.prevent>
+        <!--Here we're using modifier .prevent
+            It will deny the page to refresh when we submit.-->
+        <h2>.prevent</h2>
+        <label for="">Type your username: </label>
+        <input type="text">
+        <label for="">Type your password: </label>
+        <input type="password">
+        <button class="btn"  v-on:click="click">Sign Up</button><br><br>
+        <!--Here we're using modifier .right
+            It will trigger the method when you use right or middle mouse.-->
+        <h2>.right/middle</h2>
+        <label for="">This only will work with right/middle click: </label>
+        <button v-on:click.right="clickRight">Right Click</button>
+        <button v-on:click.middle="clickMiddle">Middle Click</button> 
+      </form><br>
+      <p>Keyboard Event (keyup)</p>
+      <form class="form" action="" v-on:submit.prevent>
+        <!--Here we're using modifier .enter
+            Method will be triggered when the user press enter.-->
+        <h2>.enter/.ctrl/.shift</h2>
+        <label for="">This only will work when you press enter: </label>
+        <input type="text" v-on:keyup.enter="keyEnter">
+        <label for="">This only will work when you press shift + enter: </label>
+        <input type="text" v-on:keyup.shift="keyShift">
+        <label for="">This only will work when you press ctrl + enter: </label>
+        <input type="text" v-on:keyup.ctrl="keyCtrl"><br><br>
+        <!--Here we're using only keyup and keydown
+            Method will be triggered when press up or down a key.-->
+        <h2>only keyup/keydown</h2>
+        <label for="">This only will work at same time you're typing: </label>
+        <input type="text" v-on:keyup="inputData" v-on:keydown="inputData">
+        <p>Typing: {{ data }}</p><br><br>
+        <!--Here we're using only v-once directive
+            This directive will trigger a method only the first time.-->
+        <h2>v-once</h2>
+        <label for="">This only will work one time: </label>
+        <input type="text" v-on:keyup="dataOne" v-on:keydown="dataOne">
+        <p v-once>Initial Value: {{ counter }}</p>
+        <p>New Value: {{ counter }}</p><br><br>
+        <!--Here we're using v-model directive
+            This directive will make the work of v-bind:value and v-on:keyup/keydown together.
+            It's called and known as Two-Way Binding-->
+        <h2>v-model</h2>
+        <label for="">Input something and then reset it! :D </label>
+        <input type="text" v-model="data1">
+        <p>Your input: {{ data1 }}</p>
+        <button class="btn"  v-on:click="resetData">Reset</button><br><br>
+        
+      </form>
+    </section>
+  </body>
+</html>
